@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".eslint*": true,
+    ".prettie*": true,
+    ".vscode": true,
+    "*.bat": true,
+    "*.md": true,
+    "*config*": false,
+    "*example*": true,
+    "*ignore*": true,
+    "*lock*": true,
+    "*node*": true,
+    "*uploads*": true,
+    "*winston*": true,
+    "dist": true,
+    "note": true
+  },
+  "explorerExclude.backup": {}
+}
