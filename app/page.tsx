@@ -22,7 +22,6 @@ import {
 	Twitter,
 	Zap,
 } from "lucide-react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import projects from "../public/project.json";
