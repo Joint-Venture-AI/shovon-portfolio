@@ -4,16 +4,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
-import { creator } from "@/lib/creator";
+import { generateMetaData } from "@/lib/generateMetaData";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+export const metadata = generateMetaData({
 	title: "Shovon | AI Developer & Machine Learning Expert",
 	description:
 		"Portfolio of Shovon, an AI developer with expertise in artificial intelligence, natural language processing, and mobile app development.",
-	creator,
-};
+});
 
 export default function RootLayout({
 	children,
