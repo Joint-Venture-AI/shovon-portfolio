@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
+	const navbarRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -17,10 +18,27 @@ export default function Navbar() {
 			} else {
 				setIsScrolled(false);
 			}
+			setIsOpen(false);
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				navbarRef.current &&
+				!navbarRef.current.contains(event.target as Node)
+			) {
+				setIsOpen(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
 	}, []);
 
 	const navLinks = [
@@ -32,6 +50,7 @@ export default function Navbar() {
 
 	return (
 		<header
+			ref={navbarRef}
 			className={cn(
 				"fixed top-0 left-0 right-0 z-50 transition-all duration-300",
 				isScrolled
@@ -86,27 +105,29 @@ export default function Navbar() {
 
 			{/* Mobile Navigation Menu */}
 			{isOpen && (
-				<div className="md:hidden bg-white">
-					<div className="container mx-auto px-4 py-4">
-						<nav className="flex flex-col space-y-4">
+				<div className="md:hidden bg-white fixed top-[66px] right-4 shadow-sm border rounded-lg ">
+					<div className="container mx-auto p-0">
+						<nav className="flex flex-col space-y-2">
 							{navLinks.map((link) => (
 								<Link
 									key={link.href}
 									href={link.href}
-									className="text-gray-900 text-sm font-medium py-2"
+									className="text-gray-900 text-sm font-medium px-4 py-2 hover:bg-gray-500/50"
 									onClick={() => setIsOpen(false)}
 								>
 									{link.label}
 								</Link>
 							))}
-							<Button
-								className="bg-[#1dbf73] hover:bg-[#19a463] text-white"
-								onClick={() =>
-									window.open("https://www.fiverr.com/code_craf", "_blank")
-								}
-							>
-								Fiverr Profile
-							</Button>
+							<div className="px-4 pb-2">
+								<Button
+									className="bg-[#1dbf73] hover:bg-[#19a463] text-white"
+									onClick={() =>
+										window.open("https://www.fiverr.com/code_craf", "_blank")
+									}
+								>
+									Fiverr Profile
+								</Button>
+							</div>
 						</nav>
 					</div>
 				</div>
