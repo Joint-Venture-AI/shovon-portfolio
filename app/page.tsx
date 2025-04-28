@@ -3,30 +3,17 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
-	ArrowRight,
 	Award,
-	Bot,
-	Brain,
-	CheckCircle2,
-	ChevronDown,
 	Clock,
-	Code,
-	ExternalLink,
-	Github,
 	Linkedin,
 	Mail,
-	MessageSquare,
-	Sparkles,
 	SquareArrowOutUpRight,
 	Star,
-	Twitter,
-	Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import projects from "../public/projects.json";
 import skills from "../public/skills.json";
-import TestimonialCard from "@/components/testimonial-card";
 import { randomizeInPlace } from "@/lib/randomizeInPlace";
 import {
 	buttonHover,
@@ -34,6 +21,7 @@ import {
 	ContactSection,
 	itemVariants,
 } from "@/components/contact";
+import { ProjectCard } from "@/components/project";
 
 randomizeInPlace(projects);
 randomizeInPlace(skills);
@@ -496,22 +484,6 @@ export default function Home() {
 									{skill.title}
 								</h3>
 								<p className="text-gray-600 mb-6">{skill.description}</p>
-
-								{/* Animated progress bar indicator */}
-								<div className="w-full bg-gray-200 rounded-full h-1.5">
-									<motion.div
-										className="bg-gradient-to-r from-primary to-secondary h-1.5 rounded-full"
-										initial={{ width: 0 }}
-										whileInView={{ width: `${Math.random() * 50 + 50}%` }}
-										transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
-										viewport={{ once: true }}
-									/>
-								</div>
-
-								{/* Hover shine effect */}
-								<div className="absolute inset-0 overflow-hidden opacity-0 hover:opacity-100 transition-opacity duration-300">
-									<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full hover:translate-x-full transition-transform duration-500" />
-								</div>
 							</motion.div>
 						))}
 					</div>
@@ -558,19 +530,22 @@ export default function Home() {
 												Freelance AI Developer
 											</h3>
 											<div className="flex items-center mt-2">
-												<span className="text-lg text-gray-600 mr-2">
-													Fiverr Pro Seller
-												</span>
-												<span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded flex items-center">
-													<StarIcon className="w-3 h-3 mr-1" />
-													Top Rated
+												<span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded flex items-center">
+													<svg
+														className="w-3 h-3 mr-1"
+														fill="currentColor"
+														viewBox="0 0 20 20"
+														xmlns="http://www.w3.org/2000/svg"
+													>
+														<path
+															fillRule="evenodd"
+															d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+															clipRule="evenodd"
+														/>
+													</svg>
+													Level 2 Seller
 												</span>
 											</div>
-										</div>
-										<div className="mt-2 md:mt-0">
-											<span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-												Since 2020
-											</span>
 										</div>
 									</div>
 
@@ -654,84 +629,7 @@ export default function Home() {
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						{projects.map((project, index) => (
-							<motion.div
-								key={project.id}
-								className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative"
-								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.6, delay: index * 0.1 }}
-								viewport={{ once: true, margin: "-100px" }}
-								whileHover={{ scale: 1.02 }}
-							>
-								{/* Background Glow Effect */}
-								<motion.div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-
-								{/* Image Section */}
-								<div className="relative overflow-hidden rounded-t-3xl">
-									<div className="aspect-video bg-gradient-to-br from-purple-100 to-indigo-100">
-										<Image
-											width={700}
-											height={700}
-											src={project.image || "/placeholder.svg"}
-											alt={project.title}
-											className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-										/>
-									</div>
-
-									{/* Hover Overlay */}
-									<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-										<div className="p-6 w-full">
-											<div className="flex justify-between items-center gap-3">
-												<h3 className="text-lg font-bold text-white">
-													{project.title}
-												</h3>
-												{project.link && (
-													<a
-														href={project.link}
-														target="_blank"
-														rel="noopener noreferrer"
-														className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors duration-300"
-													>
-														<ExternalLink className="h-4 w-4 text-white" />
-													</a>
-												)}
-											</div>
-										</div>
-									</div>
-								</div>
-
-								{/* Content Section */}
-								<div className="p-6">
-									<h3 className="text-xl font-bold text-gray-900 mb-2">
-										{project.title}
-									</h3>
-									<p className="text-gray-600 mb-4">
-										{project.description?.slice(0, 150)} ...
-									</p>
-
-									{/* Learn More Button */}
-									<motion.a
-										href={project.link}
-										className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
-										whileHover={{
-											scale: 1.05,
-											backgroundPosition: "right center",
-										}}
-										whileTap={{ scale: 0.95 }}
-										style={{
-											backgroundSize: "200% auto",
-											backgroundImage:
-												"linear-gradient(to right, #6366f1, #a855f7, #6366f1)",
-										}}
-									>
-										<span className="z-10 relative">Learn More</span>
-										<motion.span
-											className="absolute inset-0 bg-white/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-											layoutId={`button-glow-${index}`}
-										/>
-									</motion.a>
-								</div>
-							</motion.div>
+							<ProjectCard project={project} key={index} index={index} />
 						))}
 					</div>
 				</div>
@@ -833,22 +731,6 @@ export default function Home() {
 							<p className="text-gray-400 mt-2">
 								AI Developer & Machine Learning Expert
 							</p>
-						</div>
-						<div className="flex gap-6">
-							<a
-								target="_blank"
-								href="https://www.linkedin.com/in/shovon-kumar-sarkar-6047b3361"
-								className="hover:text-primary transition-colors"
-							>
-								<Linkedin size={24} />
-							</a>
-							<a
-								target="_blank"
-								href="https://www.fiverr.com/code_craf"
-								className="hover:text-primary transition-colors"
-							>
-								<Mail size={24} />
-							</a>
 						</div>
 					</div>
 					<div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
