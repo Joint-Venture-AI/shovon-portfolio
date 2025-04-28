@@ -28,6 +28,7 @@ import projects from "../public/projects.json";
 import skills from "../public/skills.json";
 import TestimonialCard from "@/components/testimonial-card";
 import { randomizeInPlace } from "@/lib/randomizeInPlace";
+import { ContactSection } from "@/components/contact";
 
 randomizeInPlace(projects);
 randomizeInPlace(skills);
@@ -758,38 +759,7 @@ export default function Home() {
 			</section>
 
 			{/* Contact Section */}
-			<section id="contact" className="py-20 bg-white">
-				<div className="container mx-auto px-4">
-					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-						Get In Touch
-					</h2>
-					<div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
-						<div className="p-8 md:p-12">
-							<p className="text-lg text-gray-700 mb-8 text-center">
-								Interested in working together? Feel free to reach out for
-								collaborations or just a friendly hello!
-							</p>
-							<div className="flex flex-wrap gap-4">
-								<a
-									target="_blank"
-									href="https://www.linkedin.com/in/shovon-kumar-sarkar-6047b3361"
-								>
-									<Button variant="outline" className="rounded-full gap-2">
-										<Linkedin size={18} />
-										LinkedIn
-									</Button>
-								</a>
-								<a target="_blank" href="https://www.fiverr.com/code_craf">
-									<Button variant="outline" className="rounded-full gap-2">
-										<Mail size={18} />
-										Contact on Fiverr
-									</Button>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<ContactSection />
 
 			{/* Footer */}
 			<footer className="bg-gray-900 text-white py-12">
