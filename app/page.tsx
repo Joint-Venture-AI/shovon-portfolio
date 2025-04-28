@@ -52,11 +52,12 @@ export default function Home() {
 					<div className="flex flex-col items-center justify-center text-center">
 						<h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in leading-[1.3] md:leading-[1.4]">
 							<span className="ai-title">AI Developer</span> <br />
-							<span className="ml-title">App & Web Engineer</span>
+							<span className="ml-title">Full-Stack App & Web Expert</span>
 						</h1>
 						<p className="text-xl md:text-2xl max-w-3xl mb-10 text-white/90">
-							Building smart applications, powerful AI solutions, and responsive
-							websites that drive innovation and business success
+							AI Developer with expertise in building high-quality mobile apps
+							and web solutions. Focused on creating smart, efficient, and
+							scalable digital products.
 						</p>
 						<Button
 							variant="secondary"
