@@ -536,7 +536,7 @@ export default function Home() {
 
 					<div className="max-w-6xl mx-auto">
 						{/* Fiverr Experience - Enhanced Card */}
-						<div className="bg-white rounded-3xl p-8 mb-12 shadow-2xl transform transition-all hover:scale-[1.01] hover:shadow-xl">
+						<div className="bg-white rounded-3xl p-8 mb-0 shadow-2xl transform transition-all hover:scale-[1.01] hover:shadow-xl">
 							<div className="flex flex-col md:flex-row gap-8 items-start">
 								<div className="md:w-1/4 flex justify-center md:justify-start">
 									<div className="bg-gradient-to-br from-primary to-secondary p-1 rounded-xl shadow-lg">
@@ -612,9 +612,7 @@ export default function Home() {
 
 									<div className="space-y-6">
 										<h4 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
-											<span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-												Services Offered
-											</span>
+											<span className="text-primary">Services Offered</span>
 										</h4>
 										<ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
 											{[
@@ -648,7 +646,7 @@ export default function Home() {
 			</section>
 
 			{/* Projects Section */}
-			<section className="pb-20 bg-gray-50">
+			<section className="py-20 bg-gray-50">
 				<div className="container mx-auto px-4">
 					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
 						Projects
