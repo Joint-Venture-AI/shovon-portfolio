@@ -32,6 +32,23 @@ import { randomizeInPlace } from "@/lib/randomizeInPlace";
 randomizeInPlace(projects);
 randomizeInPlace(skills);
 
+function StarIcon(props: any) {
+	return (
+		<svg
+			{...props}
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			strokeWidth={1.5}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+			/>
+		</svg>
+	);
+}
+
 export default function Home() {
 	return (
 		<main className="min-h-screen">
@@ -436,125 +453,127 @@ export default function Home() {
 			</section>
 
 			{/* Experience Section */}
-			<section id="experience" className="py-20 bg-white">
-				<div className="container mx-auto px-4">
+			<section
+				id="experience"
+				className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
+			>
+				{/* Decorative elements */}
+				<div className="absolute top-0 left-0 w-full h-full opacity-5">
+					<div className="absolute top-20 left-10 w-40 h-40 bg-primary rounded-full filter blur-3xl"></div>
+					<div className="absolute bottom-10 right-20 w-60 h-60 bg-secondary rounded-full filter blur-3xl"></div>
+				</div>
+
+				<div className="container mx-auto px-4 relative z-10">
 					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
 						Work Experience
 					</h2>
 
 					<div className="max-w-6xl mx-auto">
-						{/* Fiverr Experience */}
-						<div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 mb-8">
+						{/* Fiverr Experience - Enhanced Card */}
+						<div className="bg-white rounded-3xl p-8 mb-12 shadow-2xl transform transition-all hover:scale-[1.01] hover:shadow-xl">
 							<div className="flex flex-col md:flex-row gap-8 items-start">
 								<div className="md:w-1/4 flex justify-center md:justify-start">
-									<div className="bg-white p-4 rounded-xl shadow-md">
-										<Image
-											src="/man-image.png?height=80&width=80"
-											alt="Fiverr Logo"
-											width={80}
-											height={80}
-											className="h-20 w-20"
-										/>
+									<div className="bg-gradient-to-br from-primary to-secondary p-1 rounded-xl shadow-lg">
+										<div className="bg-white p-4 rounded-lg">
+											<Image
+												src="/man-image.png?height=100&width=100"
+												alt="Fiverr Logo"
+												width={100}
+												height={100}
+												className="h-24 w-24 object-contain"
+											/>
+										</div>
 									</div>
 								</div>
 								<div className="md:w-3/4">
 									<div className="flex flex-col md:flex-row justify-between mb-4">
-										<h3 className="text-2xl font-bold text-gray-800">
-											Freelance AI Developer
-										</h3>
+										<div>
+											<h3 className="text-3xl font-bold text-gray-800 bg-clip-text bg-gradient-to-r from-primary to-secondary">
+												Freelance AI Developer
+											</h3>
+											<div className="flex items-center mt-2">
+												<span className="text-lg text-gray-600 mr-2">
+													Fiverr Pro Seller
+												</span>
+												<span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded flex items-center">
+													<StarIcon className="w-3 h-3 mr-1" />
+													Top Rated
+												</span>
+											</div>
+										</div>
+										<div className="mt-2 md:mt-0">
+											<span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+												Since 2020
+											</span>
+										</div>
 									</div>
+
 									<p className="text-lg text-gray-700 mb-6 leading-relaxed">
 										I provide specialized AI development services on Fiverr,
 										helping clients implement cutting-edge artificial
-										intelligence solutions for their businesses.
+										intelligence solutions for their businesses. With a focus on
+										quality and innovation, I deliver tailored solutions that
+										drive real business impact.
 									</p>
 
-									<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-										<div className="bg-white p-4 rounded-lg shadow-sm text-center">
-											<div className="text-3xl font-bold text-primary mb-1">
-												200+
+									<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+										<div className="bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl shadow-md border border-gray-100 text-center transform transition-all hover:scale-105">
+											<div className="text-4xl font-bold text-primary mb-1 flex justify-center items-end">
+												200<span className="text-2xl text-primary/70">+</span>
 											</div>
-											<div className="text-gray-600">Projects Completed</div>
-										</div>
-										<div className="bg-white p-4 rounded-lg shadow-sm text-center">
-											<div className="text-3xl font-bold text-primary mb-1">
-												5/5
+											<div className="text-gray-600 font-medium">
+												Projects Completed
 											</div>
-											<div className="text-gray-600">Average Rating</div>
 										</div>
-										<div className="bg-white p-4 rounded-lg shadow-sm text-center">
-											<div className="text-3xl font-bold text-primary mb-1">
+										<div className="bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl shadow-md border border-gray-100 text-center transform transition-all hover:scale-105">
+											<div className="text-4xl font-bold text-primary mb-1 flex justify-center items-center">
+												5
+												<StarIcon className="w-5 h-5 ml-1 text-yellow-400 fill-yellow-400" />
+											</div>
+											<div className="text-gray-600 font-medium">
+												Average Rating
+											</div>
+										</div>
+										<div className="bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl shadow-md border border-gray-100 text-center transform transition-all hover:scale-105">
+											<div className="text-4xl font-bold text-primary mb-1">
 												90%
 											</div>
-											<div className="text-gray-600">Repeat Clients</div>
+											<div className="text-gray-600 font-medium">
+												Repeat Clients
+											</div>
 										</div>
 									</div>
 
-									<div className="space-y-4">
-										<h4 className="text-xl font-semibold text-gray-800">
-											Services Offered:
+									<div className="space-y-6">
+										<h4 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">
+											<span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+												Services Offered
+											</span>
 										</h4>
-										<ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>Custom AI Model Development</span>
-											</li>
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>Natural Language Processing</span>
-											</li>
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>Machine Learning Integration</span>
-											</li>
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>AI Chatbot Development</span>
-											</li>
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>Computer Vision Solutions</span>
-											</li>
-											<li className="flex items-center gap-2">
-												<div className="h-2 w-2 rounded-full bg-primary"></div>
-												<span>AI Consultation Services</span>
-											</li>
+										<ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+											{[
+												"Custom AI Model Development",
+												"Natural Language Processing",
+												"Machine Learning Integration",
+												"AI Chatbot Development",
+												"Computer Vision Solutions",
+												"AI Consultation Services",
+											].map((service, index) => (
+												<li
+													key={index}
+													className="flex items-start gap-3 group"
+												>
+													<div className="mt-1.5 flex-shrink-0">
+														<div className="h-3 w-3 rounded-full bg-primary group-hover:bg-secondary transition-colors"></div>
+													</div>
+													<span className="text-gray-700 group-hover:text-gray-900 transition-colors">
+														{service}
+													</span>
+												</li>
+											))}
 										</ul>
 									</div>
 								</div>
-							</div>
-						</div>
-
-						{/* Client Testimonials */}
-						<div className="mt-12">
-							<h3 className="text-2xl font-bold text-center mb-8 text-gray-800">
-								Client Testimonials
-							</h3>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-								<TestimonialCard
-									quote="Shovon and his team are so helpful and they are very passionate about their work. You can trust you are in good hands with Shovon and his team as they want to see you succeed and are happy to help, answer any questions, and make any changes."
-									author="maxilef"
-									position="United States"
-									avatar="/maxllef.webp"
-									rating={5}
-									date="2 weeks ago"
-								/>
-								<TestimonialCard
-									quote="Collaborating with Shovon has been a great experience time and time again. He brings both talent and dedication to every project, handling challenges with ease and delivering polished, high-quality work. If you are looking for a dependable developer who goes the extra mile he is a fantastic choice."
-									author="imdjohirulfin01"
-									position="United States"
-									avatar="/imdjohirulfin01.webp"
-									rating={5}
-									date="3 months ago"
-								/>
-								<TestimonialCard
-									quote="I’ve consistently been impressed with Shovon’s expertise and reliable execution. He continues to be a valuable asset to our AI projects, and I look forward to working with him again."
-									author="davisdebard"
-									position="United States"
-									avatar="/davisdebard.jpg"
-									rating={5}
-									date="1 month ago"
-								/>
 							</div>
 						</div>
 					</div>
@@ -563,7 +582,7 @@ export default function Home() {
 			</section>
 
 			{/* Projects Section */}
-			<section className="py-20 bg-gray-50">
+			<section className="pb-20 bg-gray-50">
 				<div className="container mx-auto px-4">
 					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
 						Projects
@@ -649,6 +668,90 @@ export default function Home() {
 									</motion.a>
 								</div>
 							</motion.div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* Client Review Section */}
+			<section className="py-20 bg-gray-50">
+				<div className="container mx-auto px-4">
+					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
+						Client Review
+					</h2>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{[
+							{
+								quote:
+									"Shovon and his team are so helpful and they are very passionate about their work. You can trust you are in good hands with Shovon and his team as they want to see you succeed and are happy to help, answer any questions, and make any changes.",
+								author: "maxilef",
+								position: "United States",
+								avatar: "/maxllef.webp",
+								rating: 5,
+								date: "2 weeks ago",
+							},
+							{
+								quote:
+									"Collaborating with Shovon has been a great experience time and time again. He brings both talent and dedication to every project, handling challenges with ease and delivering polished, high-quality work.",
+								author: "imdjohirulfin01",
+								position: "United States",
+								avatar: "/imdjohirulfin01.webp",
+								rating: 5,
+								date: "3 months ago",
+							},
+							{
+								quote:
+									"I've consistently been impressed with Shovon's expertise and reliable execution. He continues to be a valuable asset to our AI projects, and I look forward to working with him again.",
+								author: "davisdebard",
+								position: "United States",
+								avatar: "/davisdebard.jpg",
+								rating: 5,
+								date: "1 month ago",
+							},
+						].map((testimonial, index) => (
+							<div
+								key={index}
+								className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transform transition-all hover:scale-[1.02] hover:shadow-xl"
+							>
+								<div className="flex items-center mb-4">
+									<div className="flex -space-x-1 overflow-hidden mr-3">
+										<Image
+											src={testimonial.avatar}
+											alt={testimonial.author}
+											width={48}
+											height={48}
+											className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+										/>
+									</div>
+									<div>
+										<h4 className="font-bold text-gray-800">
+											{testimonial.author}
+										</h4>
+										<p className="text-sm text-gray-500">
+											{testimonial.position}
+										</p>
+									</div>
+								</div>
+								<div className="mb-4">
+									{[...Array(5)].map((_, i) => (
+										<StarIcon
+											key={i}
+											className={`w-5 h-5 inline ${
+												i < testimonial.rating
+													? "text-yellow-400 fill-yellow-400"
+													: "text-gray-300 fill-gray-300"
+											}`}
+										/>
+									))}
+									<span className="text-sm text-gray-500 ml-2">
+										{testimonial.date}
+									</span>
+								</div>
+								<p className="text-gray-700 italic relative pl-4 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-gradient-to-b from-primary to-secondary before:rounded-full">
+									"{testimonial.quote}"
+								</p>
+							</div>
 						))}
 					</div>
 				</div>
