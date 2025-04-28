@@ -28,7 +28,12 @@ import projects from "../public/projects.json";
 import skills from "../public/skills.json";
 import TestimonialCard from "@/components/testimonial-card";
 import { randomizeInPlace } from "@/lib/randomizeInPlace";
-import { ContactSection } from "@/components/contact";
+import {
+	buttonHover,
+	buttonTap,
+	ContactSection,
+	itemVariants,
+} from "@/components/contact";
 
 randomizeInPlace(projects);
 randomizeInPlace(skills);
@@ -308,55 +313,115 @@ export default function Home() {
 								usability. My solutions are engineered to boost efficiency,
 								drive innovation, and deliver measurable business results.
 							</p>
-							<div className="flex flex-wrap gap-4 justify-center md:justify-start mb-8">
+							<div className="flex flex-wrap gap-3 justify-center md:justify-start mb-8">
+								{/* Rating Badge */}
 								<motion.div
-									className="flex items-center gap-2 bg-sky-600/80 backdrop-blur-sm px-4 py-2 rounded-full"
+									className="relative group"
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 0.3 }}
+									transition={{
+										type: "spring",
+										stiffness: 300,
+										damping: 15,
+										delay: 0.3,
+									}}
+									whileHover={{ y: -3 }}
 								>
-									<Star className="h-4 w-4 text-yellow-300" />
-									<span className="text-white font-medium">
-										5.0 Rating (200+ Reviews)
-									</span>
+									<div className="absolute inset-0 bg-yellow-400/30 rounded-full blur-md group-hover:opacity-80 opacity-0 transition-opacity duration-300" />
+									<div className="relative flex items-center gap-2 bg-gradient-to-br from-sky-600 to-sky-700 backdrop-blur-sm px-4 py-2 rounded-full border border-sky-500/30 shadow-lg shadow-sky-500/10">
+										<motion.div
+											animate={{ rotate: [0, 15, -10, 5, 0] }}
+											transition={{ duration: 1, delay: 1 }}
+										>
+											<Star className="h-4 w-4 text-yellow-300 fill-yellow-300" />
+										</motion.div>
+										<span className="text-white font-medium text-sm">
+											5.0 Rating (200+ Reviews)
+										</span>
+										<div className="absolute inset-0 rounded-full border border-white/10 pointer-events-none" />
+									</div>
 								</motion.div>
 
+								{/* Delivery Badge */}
 								<motion.div
-									className="flex items-center gap-2 bg-sky-600/80 backdrop-blur-sm px-4 py-2 rounded-full"
+									className="relative group"
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 0.4 }}
+									transition={{
+										type: "spring",
+										stiffness: 300,
+										damping: 15,
+										delay: 0.4,
+									}}
+									whileHover={{ y: -3 }}
 								>
-									<Clock className="h-4 w-4 text-green-300" />
-									<span className="text-white font-medium">Fast Delivery</span>
+									<div className="absolute inset-0 bg-green-400/30 rounded-full blur-md group-hover:opacity-80 opacity-0 transition-opacity duration-300" />
+									<div className="relative flex items-center gap-2 bg-gradient-to-br from-emerald-600 to-emerald-700 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+										<motion.div
+											animate={{ x: [0, 2, -1, 1, 0] }}
+											transition={{ duration: 1.5, delay: 1.2 }}
+										>
+											<Clock className="h-4 w-4 text-green-300" />
+										</motion.div>
+										<span className="text-white font-medium text-sm">
+											Fast Delivery
+										</span>
+										<div className="absolute inset-0 rounded-full border border-white/10 pointer-events-none" />
+									</div>
 								</motion.div>
 
+								{/* Seller Badge */}
 								<motion.div
-									className="flex items-center gap-2 bg-sky-600/80 backdrop-blur-sm px-4 py-2 rounded-full"
+									className="relative group"
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 0.5 }}
+									transition={{
+										type: "spring",
+										stiffness: 300,
+										damping: 15,
+										delay: 0.5,
+									}}
+									whileHover={{ y: -3 }}
 								>
-									<Award className="h-4 w-4 text-blue-300" />
-									<span className="text-white font-medium">Level 2 Seller</span>
+									<div className="absolute inset-0 bg-blue-400/30 rounded-full blur-md group-hover:opacity-80 opacity-0 transition-opacity duration-300" />
+									<div className="relative flex items-center gap-2 bg-gradient-to-br from-indigo-600 to-indigo-700 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-500/30 shadow-lg shadow-indigo-500/10">
+										<motion.div
+											animate={{ scale: [1, 1.1, 1] }}
+											transition={{ duration: 1.8, delay: 1.5 }}
+										>
+											<Award className="h-4 w-4 text-blue-300 fill-blue-300/30" />
+										</motion.div>
+										<span className="text-white font-medium text-sm">
+											Level 2 Seller
+										</span>
+										<div className="absolute inset-0 rounded-full border border-white/10 pointer-events-none" />
+									</div>
 								</motion.div>
 							</div>
-							<div className="flex flex-wrap gap-4">
-								<a
+							<div className="flex flex-wrap justify-center gap-4">
+								<motion.a
 									target="_blank"
 									href="https://www.linkedin.com/in/shovon-kumar-sarkar-6047b3361"
+									className="px-6 py-3 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-primary/50 text-gray-800 font-medium flex items-center gap-2"
+									whileHover={buttonHover}
+									whileTap={buttonTap}
+									variants={itemVariants}
 								>
-									<Button variant="outline" className="rounded-full gap-2">
-										<Linkedin size={18} />
-										LinkedIn
-									</Button>
-								</a>
-								<a target="_blank" href="https://www.fiverr.com/code_craf">
-									<Button variant="outline" className="rounded-full gap-2">
-										<Mail size={18} />
-										Contact on Fiverr
-									</Button>
-								</a>
+									<Linkedin className="w-5 h-5 text-primary" />
+									<span>LinkedIn</span>
+								</motion.a>
+
+								<motion.a
+									target="_blank"
+									href="https://www.fiverr.com/code_craf"
+									className="px-6 py-3 rounded-full border border-gray-200 bg-white hover:bg-gray-50 hover:border-green-500/50 text-gray-800 font-medium flex items-center gap-2"
+									whileHover={buttonHover}
+									whileTap={buttonTap}
+									variants={itemVariants}
+								>
+									<Mail className="w-5 h-5 text-green-600" />
+									<span>Contact on Fiverr</span>
+								</motion.a>
 							</div>
 						</div>
 					</div>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Linkedin, Mail } from "lucide-react";
 
-const containerVariants = {
+export const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
 		opacity: 1,
@@ -12,7 +12,7 @@ const containerVariants = {
 	},
 };
 
-const itemVariants = {
+export const itemVariants = {
 	hidden: { y: 20, opacity: 0 },
 	visible: {
 		y: 0,
@@ -25,7 +25,7 @@ const itemVariants = {
 	},
 };
 
-const buttonHover = {
+export const buttonHover = {
 	scale: 1.05,
 	boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
 	transition: {
@@ -35,7 +35,7 @@ const buttonHover = {
 	},
 };
 
-const buttonTap = {
+export const buttonTap = {
 	scale: 0.98,
 };
 
