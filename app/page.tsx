@@ -26,57 +26,11 @@ import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import projects from "../public/project.json";
 import TestimonialCard from "@/components/testimonial-card";
-import { useEffect } from "react";
-import { annotate } from "rough-notation";
+import { randomizeInPlace } from "@/lib/randomizeInPlace";
+
+randomizeInPlace(projects);
 
 export default function Home() {
-	useEffect(() => {
-		const colors = {
-			highlight: "#1e7ba6",
-			underline: "#45e1f5",
-			box: "#ffffff",
-			bracket: "#e0f7fa",
-		};
-
-		const aiTitle = document.querySelector(".ai-title") as HTMLElement;
-		const aiAnnotation = annotate(aiTitle, {
-			type: "highlight",
-			color: colors.highlight,
-			padding: 5,
-			strokeWidth: 2,
-			animationDuration: 1000,
-		});
-
-		const mlTitle = document.querySelector(".ml-title") as HTMLElement;
-		const mlAnnotation = annotate(mlTitle, {
-			type: "underline",
-			color: colors.underline,
-			strokeWidth: 3,
-			padding: 2,
-			animationDuration: 1200,
-			iterations: 2,
-		});
-
-		const button = document.querySelector(".cta-button") as HTMLElement;
-		const buttonAnnotation = annotate(button, {
-			type: "box",
-			color: colors.box,
-			padding: 8,
-			strokeWidth: 2,
-			animationDuration: 800,
-		});
-
-		const animationSequence = [
-			{ annotation: aiAnnotation, delay: 500 },
-			{ annotation: mlAnnotation, delay: 1000 },
-			{ annotation: buttonAnnotation, delay: 1500 },
-		];
-
-		animationSequence.forEach(({ annotation, delay }) => {
-			setTimeout(() => annotation.show(), delay);
-		});
-	}, []);
-
 	return (
 		<main className="min-h-screen">
 			{/* Hero Section */}
@@ -273,7 +227,7 @@ export default function Home() {
 								<a target="_blank" href="https://www.fiverr.com/code_craf">
 									<Button variant="outline" className="rounded-full gap-2">
 										<Mail size={18} />
-										Contact
+										Contact on Fiverr
 									</Button>
 								</a>
 							</div>
@@ -448,9 +402,6 @@ export default function Home() {
 										<h3 className="text-2xl font-bold text-gray-800">
 											Freelance AI Developer
 										</h3>
-										<div className="text-primary font-medium">
-											2020 - Present
-										</div>
 									</div>
 									<p className="text-lg text-gray-700 mb-6 leading-relaxed">
 										I provide specialized AI development services on Fiverr,
@@ -461,7 +412,7 @@ export default function Home() {
 									<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 										<div className="bg-white p-4 rounded-lg shadow-sm text-center">
 											<div className="text-3xl font-bold text-primary mb-1">
-												100+
+												200+
 											</div>
 											<div className="text-gray-600">Projects Completed</div>
 										</div>
@@ -521,20 +472,20 @@ export default function Home() {
 							</h3>
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 								<TestimonialCard
-									quote="Collaborating with Shovon has been a great experience time and time again. He brings both talent and dedication to every project, handling challenges with ease and delivering polished, high-quality work. If you are looking for a dependable developer who goes the extra mile he is a fantastic choice."
-									author="imdjohirulfin01"
-									position="United States"
-									avatar="/imdjohirulfin01.webp"
-									rating={5}
-									date="3 months ago"
-								/>
-								<TestimonialCard
 									quote="Shovon and his team are so helpful and they are very passionate about their work. You can trust you are in good hands with Shovon and his team as they want to see you succeed and are happy to help, answer any questions, and make any changes."
 									author="maxilef"
 									position="United States"
 									avatar="/maxllef.webp"
 									rating={5}
 									date="2 weeks ago"
+								/>
+								<TestimonialCard
+									quote="Collaborating with Shovon has been a great experience time and time again. He brings both talent and dedication to every project, handling challenges with ease and delivering polished, high-quality work. If you are looking for a dependable developer who goes the extra mile he is a fantastic choice."
+									author="imdjohirulfin01"
+									position="United States"
+									avatar="/imdjohirulfin01.webp"
+									rating={5}
+									date="3 months ago"
 								/>
 								<TestimonialCard
 									quote="I’ve consistently been impressed with Shovon’s expertise and reliable execution. He continues to be a valuable asset to our AI projects, and I look forward to working with him again."
@@ -600,26 +551,18 @@ export default function Home() {
 								</div>
 
 								<div className="p-6">
-									<div className="flex flex-wrap gap-2 mb-3">
-										{project.tags.map((tech, i) => (
-											<span
-												key={i}
-												className="text-xs font-medium bg-purple-50 text-purple-600 px-2 py-1 rounded-md"
-											>
-												{tech}
-											</span>
-										))}
-									</div>
 									<h3 className="text-xl font-bold text-gray-900 mb-2">
 										{project.title}
 									</h3>
-									<p className="text-gray-600 mb-4">{project.description}</p>
+									<p className="text-gray-600 mb-4">
+										{project.description?.slice(0, 150)} ...
+									</p>
 									<Button
 										variant="link"
 										className="p-0 h-auto text-purple-600 hover:text-purple-700 font-medium flex items-center gap-1 group/btn"
 										onClick={() => window.open(project.link, "_blank")}
 									>
-										View Project Details
+										Learn more
 										<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
 									</Button>
 								</div>
@@ -654,7 +597,7 @@ export default function Home() {
 								<a target="_blank" href="https://www.fiverr.com/code_craf">
 									<Button variant="outline" className="rounded-full gap-2">
 										<Mail size={18} />
-										Contact
+										Contact on Fiverr
 									</Button>
 								</a>
 							</div>
