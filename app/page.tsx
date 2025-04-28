@@ -102,7 +102,7 @@ export default function Home() {
 						About Me
 					</h2>
 					<div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
-						<div className="md:w-2/5 relative h-[500px] perspective-1000">
+						<div className="md:w-2/5 relative w-full aspect-square perspective-1000">
 							{/* Holographic Base Grid */}
 							<motion.div
 								className="absolute inset-0 rounded-2xl overflow-hidden"
@@ -165,28 +165,6 @@ export default function Home() {
 									style={{
 										maskImage:
 											"linear-gradient(to bottom, rgba(0,0,0,1) 80%, transparent 100%)",
-									}}
-								/>
-
-								{/* Holographic Scan Lines */}
-								<motion.div
-									className="absolute inset-0 rounded-2xl pointer-events-none"
-									style={{
-										background: `linear-gradient(
-          to bottom,
-          transparent 0%,
-          rgba(99, 102, 241, 0.1) 50%,
-          transparent 100%
-        )`,
-										backgroundSize: "100% 8px",
-									}}
-									animate={{
-										backgroundPosition: ["0 0", "0 500px"],
-									}}
-									transition={{
-										duration: 2,
-										repeat: Infinity,
-										ease: "linear",
 									}}
 								/>
 
