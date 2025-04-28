@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Artificial Intelligence",
+		"description": "Developing custom AI models and solutions for various business needs and applications."
+	},
+	{
+		"title": "Natural Language Processing",
+		"description": "Building systems that can understand, interpret, and generate human language."
+	},
+	{
+		"title": "Mobile App Development",
+		"description": "Creating intelligent mobile applications with seamless user experiences."
+	},
+	{
+		"title": "Machine Learning",
+		"description": "Implementing algorithms that allow systems to learn and improve from experience."
+	},
+	{
+		"title": "Data Analysis",
+		"description": "Extracting meaningful insights from complex datasets to drive decision-making."
+	},
+	{
+		"title": "Web Development",
+		"description": "Designing and building responsive, interactive websites and web applications using modern technologies."
+	}
+]

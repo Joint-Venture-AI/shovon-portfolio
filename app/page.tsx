@@ -24,11 +24,13 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import projects from "../public/project.json";
+import projects from "../public/projects.json";
+import skills from "../public/skills.json";
 import TestimonialCard from "@/components/testimonial-card";
 import { randomizeInPlace } from "@/lib/randomizeInPlace";
 
 randomizeInPlace(projects);
+randomizeInPlace(skills);
 
 export default function Home() {
 	return (
@@ -88,66 +90,149 @@ export default function Home() {
 						About Me
 					</h2>
 					<div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
-						<div className="md:w-2/5 relative">
+						<div className="md:w-2/5 relative h-[500px] perspective-1000">
+							{/* Holographic Base Grid */}
 							<motion.div
-								className="bg-primary/10 absolute inset-0 rounded-2xl"
+								className="absolute inset-0 rounded-2xl overflow-hidden"
 								animate={{
-									rotateX: [0, 3, 0, -3, 0],
-									rotateY: [0, -2, 0, 2, 0],
+									rotateX: [0, 0.5, 0],
+									rotateY: [0, 0.5, 0],
+								}}
+								transition={{
+									duration: 15,
+									repeat: Infinity,
+									ease: "linear",
+								}}
+							>
+								<div className="absolute inset-0 grid grid-cols-10 grid-rows-10 gap-px">
+									{[...Array(100)].map((_, i) => (
+										<motion.div
+											key={i}
+											className="bg-primary/5 hover:bg-primary/20 transition-colors"
+											animate={{
+												opacity: [0.3, 0.7, 0.3],
+												backgroundColor: [
+													"rgba(99, 102, 241, 0.05)",
+													"rgba(99, 102, 241, 0.2)",
+													"rgba(99, 102, 241, 0.05)",
+												],
+											}}
+											transition={{
+												duration: 3 + Math.random() * 4,
+												repeat: Infinity,
+												delay: Math.random() * 2,
+											}}
+										/>
+									))}
+								</div>
+							</motion.div>
+
+							{/* Floating Image Container */}
+							<motion.div
+								className="relative h-full w-full"
+								animate={{
+									y: [0, -10, 0],
+									rotateZ: [0, 0.5, -0.5, 0],
 								}}
 								transition={{
 									duration: 8,
 									repeat: Infinity,
 									ease: "easeInOut",
 								}}
-							/>
-
-							<motion.div
-								className="bg-primary/20 absolute inset-0 rounded-2xl"
-								animate={{
-									rotateX: [0, -4, 0, 4, 0],
-									rotateY: [0, 3, 0, -3, 0],
-								}}
-								transition={{
-									duration: 7,
-									repeat: Infinity,
-									ease: "easeInOut",
-									delay: 0.3,
-								}}
-							/>
-
-							<motion.div
-								className="relative"
-								animate={{
-									y: [0, -10, 0],
-									rotate: [0, 0.5, -0.5, 0],
-								}}
-								transition={{
-									duration: 6,
-									repeat: Infinity,
-									ease: "easeInOut",
+								whileHover={{
+									scale: 1.02,
+									transition: { duration: 0.3 },
 								}}
 							>
+								{/* Main Profile Image */}
 								<Image
 									src="/man-image.png"
 									alt="Profile Image"
-									width={500}
-									height={500}
-									className="rounded-2xl shadow-xl relative z-10 drop-shadow-md"
+									fill
+									className="rounded-2xl object-cover shadow-2xl z-10"
+									style={{
+										maskImage:
+											"linear-gradient(to bottom, rgba(0,0,0,1) 80%, transparent 100%)",
+									}}
 								/>
 
-								{/* Subtle glow effect */}
+								{/* Holographic Scan Lines */}
 								<motion.div
-									className="absolute inset-0 bg-primary/5 rounded-2xl blur-md"
+									className="absolute inset-0 rounded-2xl pointer-events-none"
+									style={{
+										background: `linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(99, 102, 241, 0.1) 50%,
+          transparent 100%
+        )`,
+										backgroundSize: "100% 8px",
+									}}
 									animate={{
-										opacity: [0.3, 0.5, 0.3],
+										backgroundPosition: ["0 0", "0 500px"],
 									}}
 									transition={{
-										duration: 5,
+										duration: 2,
 										repeat: Infinity,
+										ease: "linear",
 									}}
 								/>
+
+								{/* Floating Tech Particles */}
+								<div className="absolute inset-0 overflow-hidden rounded-2xl">
+									{[...Array(15)].map((_, i) => (
+										<motion.div
+											key={i}
+											className="absolute rounded-full bg-primary"
+											style={{
+												width: `${Math.random() * 6 + 2}px`,
+												height: `${Math.random() * 6 + 2}px`,
+												left: `${Math.random() * 100}%`,
+												top: `${Math.random() * 100}%`,
+												filter: "blur(1px)",
+											}}
+											animate={{
+												y: [
+													`${Math.random() * 100}%`,
+													`${Math.random() * 100}%`,
+												],
+												x: [
+													`${Math.random() * 100}%`,
+													`${Math.random() * 100}%`,
+												],
+												opacity: [0, 0.8, 0],
+												scale: [0.5, 1.2, 0.5],
+											}}
+											transition={{
+												duration: 5 + Math.random() * 10,
+												repeat: Infinity,
+												repeatType: "reverse",
+												ease: "easeInOut",
+											}}
+										/>
+									))}
+								</div>
 							</motion.div>
+
+							{/* Outer Glow */}
+							<motion.div
+								className="absolute inset-0 rounded-2xl pointer-events-none"
+								style={{
+									boxShadow: "0 0 60px rgba(99, 102, 241, 0.2)",
+								}}
+								animate={{
+									boxShadow: [
+										"0 0 60px rgba(99, 102, 241, 0.2)",
+										"0 0 80px rgba(99, 102, 241, 0.3)",
+										"0 0 60px rgba(99, 102, 241, 0.2)",
+									],
+								}}
+								transition={{
+									duration: 5,
+									repeat: Infinity,
+									ease: "easeInOut",
+								}}
+							/>
 						</div>
 						<div className="md:w-3/5">
 							<h3 className="text-2xl font-bold mb-4 text-gray-800">
@@ -155,12 +240,21 @@ export default function Home() {
 								<Typewriter
 									words={[
 										"Shovon",
-										"ai developer",
+										"AI Developer",
 										"Shovon",
-										"web developer",
+										"Web Developer",
 										"Shovon",
-										"app developer",
+										"App Developer",
 										"Shovon",
+										"Machine Learning Engineer",
+										"Shovon",
+										"NLP Specialist",
+										"Shovon",
+										"Data Analyst",
+										"Shovon",
+										"Cloud Developer",
+										"Shovon",
+										"Full-Stack Developer",
 									]}
 									loop={5}
 									cursor
@@ -171,15 +265,30 @@ export default function Home() {
 								/>
 							</h3>
 							<p className="text-lg text-gray-700 mb-6 leading-relaxed">
-								A dedicated and expert-vetted AI developer with over 5 years of
-								experience in the field. My expertise spans across artificial
-								intelligence, natural language processing, and mobile app
-								development.
+								A seasoned AI developer with 5+ years of experience in building
+								cutting-edge solutions, specializing in{" "}
+								<span className="font-semibold text-blue-600">
+									Artificial Intelligence
+								</span>
+								,{" "}
+								<span className="font-semibold text-blue-600">
+									Natural Language Processing (NLP)
+								</span>
+								, and{" "}
+								<span className="font-semibold text-blue-600">
+									full-stack development
+								</span>
+								. I transform complex problems into scalable, intuitive
+								applications powered by machine learning and modern web
+								technologies.
 							</p>
 							<p className="text-lg text-gray-700 mb-8 leading-relaxed">
-								I pride myself on delivering high-quality, efficient, and
-								user-friendly AI solutions that drive business growth and
-								enhance user experience.
+								Passionate about crafting{" "}
+								<span className="italic">high-performance AI systems</span> and{" "}
+								<span className="italic">user-centric interfaces</span>, I
+								bridge the gap between advanced algorithms and real-world
+								usability. My solutions are engineered to boost efficiency,
+								drive innovation, and deliver measurable business results.
 							</p>
 							<div className="flex flex-wrap gap-4 justify-center md:justify-start mb-8">
 								<motion.div
@@ -234,140 +343,91 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div id="services"></div>
+				<div id="skills"></div>
 			</section>
 
 			{/* Skills Section */}
-			<section className="py-20 bg-gray-50">
-				<div className="container mx-auto px-4">
-					<h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-						My Services
-					</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{[
-							{
-								title: "AI Chatbot Development",
-								description:
-									"Custom chatbots built with the latest AI technologies to enhance customer service and engagement on your website or app.",
-								icon: <Bot className="h-8 w-8 text-purple-600" />,
-								features: [
-									"24/7 Customer Support",
-									"Personalized Responses",
-									"Multi-platform Integration",
+			<section className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
+				{/* Floating background elements */}
+				<div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+					{[...Array(12)].map((_, i) => (
+						<motion.div
+							key={i}
+							className="absolute rounded-full bg-primary"
+							style={{
+								width: `${Math.random() * 300 + 100}px`,
+								height: `${Math.random() * 300 + 100}px`,
+								left: `${Math.random() * 100}%`,
+								top: `${Math.random() * 100}%`,
+								filter: "blur(60px)",
+							}}
+							animate={{
+								x: [
+									`${Math.random() * 100 - 50}px`,
+									`${Math.random() * 100 - 50}px`,
 								],
-								price: "Starting at $150",
-							},
-							{
-								title: "GPT Integration",
-								description:
-									"Seamless integration of OpenAI's GPT models into your applications for content generation, summarization, and more.",
-								icon: <Code className="h-8 w-8 text-purple-600" />,
-								features: [
-									"API Implementation",
-									"Custom Prompts",
-									"Response Optimization",
+								y: [
+									`${Math.random() * 100 - 50}px`,
+									`${Math.random() * 100 - 50}px`,
 								],
-								price: "Starting at $120",
-							},
-							{
-								title: "AI-Powered Analytics",
-								description:
-									"Transform your data into actionable insights with machine learning algorithms and predictive analytics.",
-								icon: <Zap className="h-8 w-8 text-purple-600" />,
-								features: [
-									"Data Visualization",
-									"Predictive Models",
-									"Business Intelligence",
-								],
-								price: "Starting at $200",
-							},
-							{
-								title: "Computer Vision Solutions",
-								description:
-									"Image recognition and processing capabilities to extract valuable insights from visual data for your business.",
-								icon: <Sparkles className="h-8 w-8 text-purple-600" />,
-								features: [
-									"Object Detection",
-									"Image Classification",
-									"Visual Search",
-								],
-								price: "Starting at $250",
-							},
-							{
-								title: "Natural Language Processing",
-								description:
-									"Process and analyze human language to enable sentiment analysis, text classification, and more.",
-								icon: <MessageSquare className="h-8 w-8 text-purple-600" />,
-								features: [
-									"Sentiment Analysis",
-									"Text Classification",
-									"Language Translation",
-								],
-								price: "Starting at $180",
-							},
-							{
-								title: "Custom AI Development",
-								description:
-									"Tailored AI solutions designed specifically for your unique business challenges and objectives.",
-								icon: <Brain className="h-8 w-8 text-purple-600" />,
-								features: [
-									"Consultation",
-									"Custom Development",
-									"Ongoing Support",
-								],
-								price: "Starting at $300",
-							},
-						].map((service, index) => (
+							}}
+							transition={{
+								duration: 20 + Math.random() * 20,
+								repeat: Infinity,
+								repeatType: "reverse",
+								ease: "easeInOut",
+							}}
+						/>
+					))}
+				</div>
+
+				<div className="container mx-auto px-4 relative z-10">
+					{/* Animated title */}
+					<motion.h2
+						className="text-3xl md:text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8 }}
+						viewport={{ once: true }}
+					>
+						My Skills
+					</motion.h2>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+						{skills.map((skill, index) => (
 							<motion.div
 								key={index}
-								className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group"
+								className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 relative overflow-hidden"
 								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: index * 0.1 }}
-								viewport={{ once: true, margin: "-100px" }}
-								whileHover={{ y: -10 }}
+								viewport={{ once: true, margin: "-50px" }}
+								whileHover={{ y: -5 }}
 							>
-								<motion.div
-									className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4 group-hover:bg-[#a03ac962] group-hover:text-white transition-colors duration-300"
-									whileHover={{ rotate: 360 }}
-									transition={{ duration: 0.6 }}
-								>
-									{service.icon}
-								</motion.div>
-								<h3 className="text-xl font-bold text-gray-900 mb-2">
-									{service.title}
+								{/* Skill icon placeholder - replace with your icons */}
+								<div className="w-12 h-12 mb-4 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xl font-bold">
+									{skill.title.charAt(0)}
+								</div>
+
+								<h3 className="text-xl font-bold mb-4 text-gray-800">
+									{skill.title}
 								</h3>
-								<p className="text-gray-600 mb-4">{service.description}</p>
+								<p className="text-gray-600 mb-6">{skill.description}</p>
 
-								<ul className="mb-6 space-y-2">
-									{service.features.map((feature, i) => (
-										<motion.li
-											key={i}
-											className="flex items-center gap-2 text-gray-700"
-											initial={{ opacity: 0, x: -10 }}
-											whileInView={{ opacity: 1, x: 0 }}
-											transition={{ duration: 0.3, delay: 0.3 + i * 0.1 }}
-											viewport={{ once: true }}
-										>
-											<CheckCircle2 className="h-4 w-4 text-green-500" />
-											<span>{feature}</span>
-										</motion.li>
-									))}
-								</ul>
+								{/* Animated progress bar indicator */}
+								<div className="w-full bg-gray-200 rounded-full h-1.5">
+									<motion.div
+										className="bg-gradient-to-r from-primary to-secondary h-1.5 rounded-full"
+										initial={{ width: 0 }}
+										whileInView={{ width: `${Math.random() * 50 + 50}%` }}
+										transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
+										viewport={{ once: true }}
+									/>
+								</div>
 
-								<div className="flex items-center justify-between">
-									{/* <span className='font-bold text-purple-600'>
-                    {service.price}
-                  </span> */}
-									<Button
-										size="sm"
-										className="bg-[#1dbf73] hover:bg-[#19a463] text-white"
-										onClick={() =>
-											window.open("https://www.fiverr.com/code_craf", "_blank")
-										}
-									>
-										Order Now
-									</Button>
+								{/* Hover shine effect */}
+								<div className="absolute inset-0 overflow-hidden opacity-0 hover:opacity-100 transition-opacity duration-300">
+									<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full hover:translate-x-full transition-transform duration-500" />
 								</div>
 							</motion.div>
 						))}
@@ -513,16 +573,18 @@ export default function Home() {
 						{projects.map((project, index) => (
 							<motion.div
 								key={project.id}
-								className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 group ${
-									true ? "md:col-span-2 lg:col-span-1" : ""
-								}`}
+								className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative"
 								initial={{ opacity: 0, y: 30 }}
 								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
+								transition={{ duration: 0.6, delay: index * 0.1 }}
 								viewport={{ once: true, margin: "-100px" }}
-								whileHover={{ y: -10 }}
+								whileHover={{ scale: 1.02 }}
 							>
-								<div className="relative overflow-hidden">
+								{/* Background Glow Effect */}
+								<motion.div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
+								{/* Image Section */}
+								<div className="relative overflow-hidden rounded-t-3xl">
 									<div className="aspect-video bg-gradient-to-br from-purple-100 to-indigo-100">
 										<Image
 											width={700}
@@ -532,15 +594,20 @@ export default function Home() {
 											className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
 										/>
 									</div>
+
+									{/* Hover Overlay */}
 									<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
 										<div className="p-6 w-full">
-											<div className="flex justify-end gap-3">
+											<div className="flex justify-between items-center gap-3">
+												<h3 className="text-lg font-bold text-white">
+													{project.title}
+												</h3>
 												{project.link && (
 													<a
 														href={project.link}
 														target="_blank"
 														rel="noopener noreferrer"
-														className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors"
+														className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors duration-300"
 													>
 														<ExternalLink className="h-4 w-4 text-white" />
 													</a>
@@ -550,6 +617,7 @@ export default function Home() {
 									</div>
 								</div>
 
+								{/* Content Section */}
 								<div className="p-6">
 									<h3 className="text-xl font-bold text-gray-900 mb-2">
 										{project.title}
@@ -557,14 +625,28 @@ export default function Home() {
 									<p className="text-gray-600 mb-4">
 										{project.description?.slice(0, 150)} ...
 									</p>
-									<Button
-										variant="link"
-										className="p-0 h-auto text-purple-600 hover:text-purple-700 font-medium flex items-center gap-1 group/btn"
-										onClick={() => window.open(project.link, "_blank")}
+
+									{/* Learn More Button */}
+									<motion.a
+										href={project.link}
+										className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+										whileHover={{
+											scale: 1.05,
+											backgroundPosition: "right center",
+										}}
+										whileTap={{ scale: 0.95 }}
+										style={{
+											backgroundSize: "200% auto",
+											backgroundImage:
+												"linear-gradient(to right, #6366f1, #a855f7, #6366f1)",
+										}}
 									>
-										Learn more
-										<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-									</Button>
+										<span className="z-10 relative">Learn More</span>
+										<motion.span
+											className="absolute inset-0 bg-white/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+											layoutId={`button-glow-${index}`}
+										/>
+									</motion.a>
 								</div>
 							</motion.div>
 						))}
